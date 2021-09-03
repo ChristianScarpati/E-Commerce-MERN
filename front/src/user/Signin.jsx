@@ -46,7 +46,7 @@ const Signin = () => {
   };
 
   const showError = () => (
-    <div
+    <div 
       className="alert alert-danger"
       style={{ display: error ? "" : "none" }}
     >
@@ -69,8 +69,12 @@ const Signin = () => {
         return <Redirect to ="/user/dashboard" />
       }
     }
+    if (isAuthenticated()) {
+      return <Redirect to ="/" />
+    }
 };
 
+  
   return (
     <Layout
       title="Signin"
