@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
-import { Link } from "react-router-dom";
-import createAProduct from "./ApiAdmin";
+import { createAProduct, getCategories } from "./ApiAdmin";
 
 const AddProduct = () => {
-
   const [values, setValues] = useState({
     name: "",
     description: "",
@@ -16,8 +14,8 @@ const AddProduct = () => {
     quantity: "",
     photo: "",
     loading: false,
-    error: "",
-    createProduct: "",
+    error: "errorsin",
+    createdProduct: "",
     redirectToProfile: false,
     formData: "",
   });
@@ -33,15 +31,26 @@ const AddProduct = () => {
     photo,
     loading,
     error,
-    createProduct,
+    createdProduct,
     redirectToProfile,
     formData,
   } = values;
 
+  // load categories and set form data
+  const init = () => {
+    getCategories().then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({ ...values, categories: data, formData: new FormData() });
+      }
+    });
+  };
+
   const { user, token } = isAuthenticated();
 
   useEffect(() => {
-    setValues({ ...values, formData: new FormData() }); //ademas de actualizarse, pobla la form data tambien que va hacia el backend para el nuevo producto
+    init(); //ademas de actualizarse, pobla la form data tambien que va hacia el backend para el nuevo producto
   }, []);
 
   const handleChange = (name) => (e) => {
@@ -57,9 +66,9 @@ const AddProduct = () => {
     e.preventDefault();
     setValues({ ...values, error: "", loading: true });
     createAProduct(user._id, token, formData).then((data) => {
-        console.log(data, "soy data")
+      console.log(data, "soy data");
       if (data.error) {
-        console.log(data.error, "soy data error")
+        console.log(data.error, "soy data error");
         setValues({ ...values, error: data.error });
       } else {
         setValues({
@@ -76,6 +85,32 @@ const AddProduct = () => {
     });
   };
 
+  const showError = () => {
+    <div
+      className="alert alert-danger"
+      style={{ display: error ? "" : "none" }}
+    >
+      {error}
+    </div>;
+  };
+
+  const showSuccess = () => {
+    <div
+      className="alert alert-info"
+      style={{ display: createdProduct ? "" : "none" }}
+    >
+      <h2> {`${createdProduct}`} is created!</h2>
+    </div>;
+  }
+
+  const showLoading = () => {
+    loading && (
+      <div className="alert alert-success">
+        <h2>Loading...</h2>
+      </div>
+    );
+  };
+
   return (
     <Layout
       title="Add a new Product"
@@ -83,7 +118,14 @@ const AddProduct = () => {
     >
       <div className="row">
         <div className="col-8 offset-md-2">
+          {}
+
+            {showSuccess()} {/* por que no me aparece */}
+            {showError()} {/* por que no me aparece */}
+            {showLoading()} {/* por que no me aparece */}
+
           <form className="mb-3" onSubmit={clickSubmit}>
+            
             <h4>Post Photo</h4>
             <div className="form-group">
               <label className="btn btn-secondary">
@@ -95,7 +137,6 @@ const AddProduct = () => {
                 />
               </label>
             </div>
-
             <div className="form-group">
               <label className="text-muted">Name</label>
               <input
@@ -104,7 +145,6 @@ const AddProduct = () => {
                 className="form-control"
               />
             </div>
-
             <div className="form-group">
               <label className="text-muted">Description</label>
               <textarea
@@ -114,7 +154,6 @@ const AddProduct = () => {
                 value={description}
               />
             </div>
-
             <div className="form-group">
               <label className="text-muted">Price</label>
               <input
@@ -124,7 +163,6 @@ const AddProduct = () => {
                 value={price}
               />
             </div>
-
             <div className="form-group">
               <label className="text-muted">Category</label>
               <select
@@ -132,12 +170,16 @@ const AddProduct = () => {
                 type="number"
                 className="form-control"
               >
-                <option value="6130064540b91a9e352c2b31">Python</option>
-                <option value="6130064540b91a9e352c2b31">PHP</option>
+                <option>Please select</option>
 
+                {categories &&
+                  categories.map((categories, index) => (
+                    <option key={index} value={categories._id}>
+                      {categories.name}
+                    </option>
+                  ))}
               </select>
             </div>
-
             <div className="form-group">
               <label className="text-muted">Quantity</label>
               <input
@@ -147,18 +189,18 @@ const AddProduct = () => {
                 value={quantity}
               />
             </div>
-
             <div className="form-group">
               <label className="text-muted">Shipping</label>
               <select
                 onChange={handleChange("shipping")}
                 className="form-control"
               >
+                <option>Please select </option>
+
                 <option value="0">No</option>
                 <option value="1">Yes</option>
               </select>
             </div>
-
             <button className="btn btn-outline-primary">Create product</button>
           </form>
         </div>
