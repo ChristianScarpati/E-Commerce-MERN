@@ -5,6 +5,7 @@ export const createCategory = (userId, token, category) => {
     method: "POST",
     headers: {
       Accept: "application/json",
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(category), //como no acepta js el back le mandamos un json

@@ -23,10 +23,9 @@ const AddCategory = () => {
         e.preventDefault()
         setError('')
         setSuccess(false)
-        // Machen einen rquest zur Kategorie api
+        // Machen einen request zur Kategorie api
         createCategory(user._id, token, {name})
         .then(data => {
-
           if(data.error) {
             console.log(data.error, "soy data")
             setError(true) 

@@ -5,7 +5,6 @@ import { read, listRelated } from "./ApiCore";
 
 const Product = (props) => {
 
-      console.log(props)
        const [product, setProduct] = useState({})
        const [relatedProduct, setRelatedProduct] = useState([])
        const [error, setError] = useState(false)
@@ -32,7 +31,7 @@ const Product = (props) => {
        useEffect (()=> {
           const productId = props.match.params.productId
           loadSingleProduct(productId)
-       }, [])
+       }, [props])
 
   return (
     <Layout       
@@ -41,8 +40,19 @@ const Product = (props) => {
       className="container-fluid"
     >
       <div className="row">
-          {product && product.description && 
+         <div className="col-8">
+         {product && product.description && 
             <Card product={product} showViewProductButton={false}/>}
+         </div>
+         <div className="col-4">
+           <h4>Related Products</h4>
+           {relatedProduct.map((p, i)=> (
+
+             <div key={i} className="mb-3">
+               <Card product={p}/>
+             </div>
+           ))}
+         </div>
       </div>
     </Layout>
   );
