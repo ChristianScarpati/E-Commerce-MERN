@@ -36,21 +36,20 @@ nav :hover {
 /* .mainBodyCard {
     background: #;
 } */
-.card {
-    border: 1px solid black;
-}
+
 
 .card-p {
     text-align: center;
+    border-radius: 10px;
 }
 .description {
     font-weight: bold;
-    font-size: large;
+    font-size: xx-large;
 }
 
-.black-10{background: #FFCEB4 ;}
+/* .black-10{background: #FFCEB4 ;}
 .black-9{background: #FFCEB4 ;}
-.black-8{background: #FFCEB4 ;}
+.black-8{background: #FFCEB4 ;} */
 
 /* .black-7{background: #cccccc;}
 .black-6{background: #bfbfbf;}

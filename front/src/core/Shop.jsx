@@ -104,13 +104,13 @@ const Shop = () => {
 
   return (
     <Layout
-      title="Home Page"
+      title="Welcome to the Shop"
       description="Search and find books of your choice"
       className="container-fluid"
     >
       <div className="row">
-        <div className="col-2 " >
-          <h4>Filter by categories</h4>
+        <div className="mb-5 col-3" style={{marginTop:"100px"}}>
+          <h4 >Filter by categories</h4>
           <ul>
             <Checkbox
               categories={categories}
@@ -127,10 +127,10 @@ const Shop = () => {
           </div>
         </div>
         <div className="col-8">
+          <h1 className="mb-5 text-center">Products</h1>
           {
             <div className="row">
-              <h2 className="mb-4">Products</h2>
-
+              
               <div className="row">
                 {filteredResults &&
                   filteredResults.map((product, i) => (

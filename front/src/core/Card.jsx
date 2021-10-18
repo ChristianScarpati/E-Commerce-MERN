@@ -100,20 +100,23 @@ const addToCart = () => {
       <div className="card-body mainBodyCard">
         {shouldRedirect(redirect)}
         <ShowImage item={product} url="product" />
-        <p className="card-p mt-5 description">{product.description.substring(0, 40)} </p>
-        <p className="card-p black-10">$ {product.price}</p>
-        <p className="card-p black-9">Category: {product.category && product.category.name}</p>
+        <p className="card-p mt-5 description">{product.description.substring(0, 30)} </p>
+        
+        <div  style={{textAlign:"center", position:"relative", width:"70%", left:"17%" }}>
+        <p className="card-p black-10 " style={{fontWeight:"bold", fontSize:"xx-large"}}>${product.price}</p>
+        <p className="card-p black-9" style={{fontSize:"x-large"}}>Category: {product.category && product.category.name}</p>
         <p className="card-p black-8">Added on {moment(product.createdAt).fromNow()}</p>
+        </div>
  
         <div style={{textAlign: "center"}}>
         {showStock(product.quantity)}
         <br />
         {showViewButton(showViewProductButton)}
         {showAddToCartBtn(showAddToCartButton)}
+        {showRemoveButton(showRemoveProductButton)}
         </div>
  
  
-        {showRemoveButton(showRemoveProductButton)}
  
         {showCartUpdateOptions(cartUpdate)}
       </div>
