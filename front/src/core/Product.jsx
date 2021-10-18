@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import Layout from "./Layout";
 import Card from "./Card";
 import { read, listRelated } from "./ApiCore";
+import '../styles.css'
+import styles from '../styles.css'
 
 const Product = (props) => {
 
@@ -40,9 +42,12 @@ const Product = (props) => {
       className="container-fluid"
     >
       <div className="row">
-         <div className="col-8">
-         {product && product.description && 
-            <Card product={product} showViewProductButton={false}/>}
+         <div className="col-8" >
+         {product?.description && 
+            <Card 
+            className={styles.algo}
+            product={product}
+             showViewProductButton={false} />}
          </div>
          <div className="col-4">
            <h4>Related Products</h4>

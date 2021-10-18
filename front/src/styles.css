@@ -2,7 +2,9 @@
 /* 
 border radius
 */
-
+/* body{
+    background: cornflowerblue;
+} */
 .btn,
 .jumbotron,
 nav :hover {
@@ -30,6 +32,19 @@ nav :hover {
 /* 
    ~ Single product page - Black shade form 10-1
 */
+
+/* .mainBodyCard {
+    background: #;
+} */
+
+.card-p {
+    text-align: center;
+}
+.description {
+    font-weight: bold;
+    font-size: large;
+}
+
 .black-10{background: #f2f2f2 ;}
 .black-9{background: #e6e6e6 ;}
 .black-8{background: #d9d9d9 ;}
@@ -40,6 +55,11 @@ nav :hover {
 /* 
     Porduct image on card
 */
+
+/* .algo {
+    background: red;
+    width: 400px;
+} */
 
 .product-img {
     min-height: 100px;

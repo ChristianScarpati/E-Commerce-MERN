@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import { getProducts } from "./ApiCore";
 import Card from "./Card";
 import Search from "./Search";
+import styles from '../styles.css'
 
 const Home = () => {
   const [productsBySell, setProductsBySell] = useState([]);
@@ -37,16 +38,16 @@ const Home = () => {
   return (
     <Layout
       title="Home Page"
-      description="Node React E-commerce App"
+      description="E-commerce"
       className="container-fluid"
     >
       <Search />
 
       <h2 className="mb-4">Best Sellers</h2>
-      <div className="row">
+      <div className="row ">
         {productsBySell.map((product, index) => (
           <div key={index} className="col-4 mb-3">
-            <Card product={product} />
+            <Card product={product}  />
           </div>
         ))}
       </div>

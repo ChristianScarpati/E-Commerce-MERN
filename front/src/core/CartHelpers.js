@@ -15,7 +15,7 @@ export const addItem = (item, next) => {
       return cart.find((p) => p._id === id);
     });
     localStorage.setItem("cart", JSON.stringify(cart));
-    next();
+    // next();
   }
 };
 
