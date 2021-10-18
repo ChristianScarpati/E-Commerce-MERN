@@ -2,9 +2,9 @@
 /* 
 border radius
 */
-/* body{
-    background: cornflowerblue;
-} */
+body{
+    background: rgb(251, 238, 233);
+}
 .btn,
 .jumbotron,
 nav :hover {
@@ -36,6 +36,9 @@ nav :hover {
 /* .mainBodyCard {
     background: #;
 } */
+.card {
+    border: 1px solid black;
+}
 
 .card-p {
     text-align: center;
@@ -45,12 +48,13 @@ nav :hover {
     font-size: large;
 }
 
-.black-10{background: #f2f2f2 ;}
-.black-9{background: #e6e6e6 ;}
-.black-8{background: #d9d9d9 ;}
-.black-7{background: #cccccc;}
+.black-10{background: #FFCEB4 ;}
+.black-9{background: #FFCEB4 ;}
+.black-8{background: #FFCEB4 ;}
+
+/* .black-7{background: #cccccc;}
 .black-6{background: #bfbfbf;}
-.black-5{background: #b3b3b3;}
+.black-5{background: #b3b3b3;} */
 
 /* 
     Porduct image on card

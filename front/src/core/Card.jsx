@@ -42,7 +42,7 @@ const addToCart = () => {
   const showAddToCartBtn = showAddToCartButton => {
     return (
       showAddToCartButton && (
-        <button onClick={addToCart} className="btn btn-outline-warning mt-2 mb-2 card-btn-1  ">
+        <button onClick={addToCart} className="btn btn-outline-dark mt-2 mb-2 card-btn-1  ">
           Add to cart
         </button>
       )
@@ -100,7 +100,7 @@ const addToCart = () => {
       <div className="card-body mainBodyCard">
         {shouldRedirect(redirect)}
         <ShowImage item={product} url="product" />
-        <p className="card-p mt-5 description">{product.description.substring(0, 100)} </p>
+        <p className="card-p mt-5 description">{product.description.substring(0, 40)} </p>
         <p className="card-p black-10">$ {product.price}</p>
         <p className="card-p black-9">Category: {product.category && product.category.name}</p>
         <p className="card-p black-8">Added on {moment(product.createdAt).fromNow()}</p>
