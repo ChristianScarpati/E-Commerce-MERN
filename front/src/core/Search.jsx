@@ -64,7 +64,9 @@ const Search = () => {
     return (
       <div className="row">
         {results.map((product, i) => (
-          <Card key={i} product={product} />
+          <div key={i} className="col-4 mb-3" style={{padding:"15px"}}>
+          <Card product={product} />
+          </div>
         ))}
       </div>
     );
@@ -75,8 +77,8 @@ const Search = () => {
       <span className="input-group-text">
         <div className="input-group input-group-lg">
           <div className="input-group-prepend">
-            <select className="btn mr-2" onChange={handleChange("category")}>
-              <option value="All">Pick Category</option>
+            <select className="btn mr-2 " onClick={handleChange("category")}>
+              <option  value="All">Pick Category</option>
               {categories.map((c, i) => (
                 <option key={i} value={c._id}>
                   {c.name}
@@ -101,7 +103,7 @@ const Search = () => {
   return (
     <div className="row">
       <div className="container mb-2">{searchForm()}</div>
-      <div className="container-fluid mb-2">
+      <div className="container-fluid mb-2 ">
         <h2 className="mt-4 mb-4">
           {searchMessage(searched, results)}
         </h2>
@@ -112,3 +114,4 @@ const Search = () => {
 };
 
 export default Search;
+
